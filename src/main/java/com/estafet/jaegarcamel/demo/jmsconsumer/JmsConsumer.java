@@ -17,7 +17,7 @@ public class JmsConsumer extends RouteBuilder {
         from("rabbitmq://" + rabbitmqUrl + "/amq.direct?autoDelete=false&routingKey=register")
                 .setBody()
                 .simple("test")
-                .to("http://" + fake_url + "/fakeservice")
+                .to("http://" + fake_url + "/fakeservice?bridgeEndpoint=true")
                 .to("log:todo-db")
                 .to("log:registered");
     }
